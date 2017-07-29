@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "outDir": "./built",
+        "module": "commonjs",
+        "sourceMap": true,
+        "allowJs": true,
+        "strictNullChecks": true,
+        //"noEmitOnError": true,
+        //"noImplicitAny": true,
+        "target": "ES2016"
+    },
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ],
+    "include": [
+        "./src/**/*"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "node"
+        ]
+    }
+}
