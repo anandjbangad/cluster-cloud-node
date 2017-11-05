@@ -1,5 +1,5 @@
 import Tesseract = require("tesseract.js");
-import * as itf from "../../common/interfaces.d"
+import * as itf from "../../cluster-common/common/interfaces"
 import winston = require("winston")
 var exec = require('child_process').exec;
 

@@ -4,11 +4,11 @@ import fs = require("fs");
 import Tesseract = require("tesseract.js");
 import rbush = require("rbush");
 import knn = require("rbush-knn");
-import * as itf from "../../common/interfaces.d"
+import os = require("../../cluster-common/common/utils/os")
+import * as itf from "../../cluster-common/common/interfaces"
 import { Task3, visionTask1, stressTask } from "./task"
 import amqp = require('amqplib');
-import os = require("../../common/utils/os")
-import { getQueueStats, startMonitoringQueueStats } from "../../common/utils/ms_stats"
+import { getQueueStats, startMonitoringQueueStats } from "../../cluster-common/common/utils/ms_stats"
 import MA = require('moving-average');
 import winston = require("winston")
 winston.remove(winston.transports.Console);
