@@ -39,13 +39,13 @@ export function startCharting() {
                 if (error !== null) {
                     console.log('exec error: ' + error);
                 } else {
-                    Promise.all([myTask.getMovingAverage()]).then(values => {
-                        // You must send time (X axis) and a temperature value (Y axis)
-                        var date = new Date().getTime();
-                        var temp = parseFloat(stdout) / 1000;
-                        socket.emit('temperatureUpdate', date, temp);
-                        socket.emit('cpu', date, values[0]);
-                    })
+                    // Promise.all([myTask.getMovingAverage()]).then(values => {
+                    //     // You must send time (X axis) and a temperature value (Y axis)
+                    //     var date = new Date().getTime();
+                    //     var temp = parseFloat(stdout) / 1000;
+                    //     socket.emit('temperatureUpdate', date, temp);
+                    //     socket.emit('cpu', date, values[0]);
+                    // })
                 }
             });
         }, 3000);

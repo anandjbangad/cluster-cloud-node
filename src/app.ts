@@ -1,5 +1,8 @@
-import { config } from "dotenv";
-config({ path: "./.env" });
+// import { config } from "dotenv";
+// config({ path: "./.env" })
+import Config from "./config";
+
+require('dotenv').config();
 import fs = require("fs");
 import Tesseract = require("tesseract.js");
 import rbush = require("rbush");
@@ -20,7 +23,7 @@ winston.add(winston.transports.Console, {
 
 
 import { Server as WebSocketServer } from "ws";
-let wss = new WebSocketServer({ port: process.env.CLOUD_PORT });
+let wss = new WebSocketServer({ port: Config.CLOUD_PORT });
 import mongoose = require("mongoose");
 var cloudDB = mongoose.createConnection("mongodb://localhost/cloudDB");
 var Schema = mongoose.Schema;
@@ -132,7 +135,7 @@ amqp.connect('amqp://localhost')
         let msg: itf.cld_publish_topics = {
           // cpu: values[0] + (Math.random() * 0.1 - 0.05),
           // freemem: os.getFreeRam() + (Math.random() * 0.1 - 0.05),
-          cpu: values[0],
+          cpu: 1,
           freemem: os.getFreeRam(),
           //msgCount: values[1],
           jobLatency: maNodeJobLatency.movingAverage() || 1,
@@ -141,7 +144,7 @@ amqp.connect('amqp://localhost')
         amqpCloud.ch.publish(ex, '', new Buffer(JSON.stringify(msg)));
         winston.verbose("Published topics from Cloud ", msg);
       })
-    }, process.env.localTopicPublishPeriod);
+    }, Config.localTopicPublishPeriod);
   })
   .catch((err) => {
     winston.log(err);
