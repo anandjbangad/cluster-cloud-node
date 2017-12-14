@@ -17,7 +17,7 @@ import winston = require("winston")
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.Console, {
   timestamp: true,
-  level: process.env.LOGGING_LVL, //{ error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5 }
+  level: Config.LOGGING_LVL, //{ error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5 }
   colorize: true
 });
 
@@ -75,7 +75,6 @@ var spatialTree = rbush(9, [".lat", ".lon", ".lat", ".lon"]);
 const interval = setInterval(function ping() {
   wss.clients.forEach(function each(ws) {
     if (ws.isAlive === false) return ws.terminate();
-
     ws.isAlive = false;
     ws.ping('', false, true);
   });
@@ -98,6 +97,7 @@ amqp.connect('amqp://localhost')
       reqCounter++;
       let startTime = Date.now();
       winston.debug("Received %s", msg.content.toString());
+      //winston.info(msg.content.toString());
       ch.assertQueue(msg.properties.replyTo, { durable: false });
       winston.debug("reply to ", msg.properties.replyTo);
 
